@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Aliq Memory Injector",
+  "description": "Injects Aliq full memory context into every prompt by reading MemoryCore files via shell command.",
+  "version": "1",
+  "when": {
+    "type": "promptSubmit"
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"%USERPROFILE%\\.kiro\\aliq-context.ps1\"",
+    "timeout": 15
+  },
+  "workspaceFolderName": "Project-AI-MemoryCore",
+  "shortName": "aliq-memory-inject"
+}
