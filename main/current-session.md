@@ -22,15 +22,15 @@
 *Temporary storage - cleared when session ends*
 
 ### Active Context
-- **Current Topic**: Checking memory history for the UNITEN fyutr-connect PR
-- **Immediate Goals**: Recall context about the Info365 Timetable integration
-- **Recent Progress**: Triggered Memory Recall to retrieve prior PR context
-- **Next Steps**: Await user instruction on how to proceed with the PR
+- **Current Topic**: Finalizing the Multi-Agent Sync module for Copilot
+- **Immediate Goals**: Document the Copilot capability registration flow
+- **Recent Progress**: Saved diary documenting Copilot's global instructions and CLI constraints
+- **Next Steps**: Await user instruction for next project
 
 ### Session Recap (For AI Restart)
 *Quick summary when AI loads after close/reopen*
-- **Previous Session Summary**: Setup wizard executed with AI name Aliq and user name syafiq
-- **Where We Left Off**: We shifted context to reviving work on the UNITEN fyutr-connect PR
+- **Previous Session Summary**: Packaged the Multi-Agent Sync feature for open-source (using `[AI_NAME]` placeholders) and officially registered GitHub Copilot's CLI/VSCode GUI capabilities globally.
+- **Where We Left Off**: Copilot global tracking is active without polluting local project `.github` folders. Next step is returning to typical project executions (`transport-api` or `fyutr-connect`).
 
 ## Active Project
 - **Name**: transport-api

@@ -23,6 +23,7 @@ Executed when "Load multi-agent-sync" command is used — detects the user's pre
   - Cursor → `.cursorrules`
   - Kiro → `.kiro/steering/` and `.kiro/hooks/`
   - Claude Code → `plugins/[name]/skills/`
+  - GitHub Copilot → `.github/instructions/` and Global Prompts folder (`~/.vscode/` or `%APPDATA%\Code\User\prompts\`)
 - [ ] **Unrecognized/Custom Tools Fallback**:
   - If the user mentions a tool not listed above, ask: *"Where does [TOOL_NAME] read its custom instructions, system prompts, or workflows from?"*
   - Identify the absolute or relative path to that configuration folder/file.
@@ -38,9 +39,31 @@ Executed when "Load multi-agent-sync" command is used — detects the user's pre
 ### Step 3: Implement Automated Global Hooks (Do It For The User)
 Do not ask the user to copy-paste. You must physically write the global tracking rules into their tools' native configuration files so they are immediately active:
 
-#### If Cursor / Windsurf / Copilot is used:
+#### If Cursor / Windsurf is used:
 - [ ] Automatically create a `.cursorrules` or `.windsurfrules` file in the project root if it does not exist.
 - [ ] PREPEND the exact contents of `modify/global-memory-rule.md` to the top of the file. Do not overwrite their existing custom rules!
+
+#### If GitHub Copilot / VSCODE is used:
+- [ ] **Copilot Cross-Workspace Memory Instruction** (critical — do not skip):
+  - Do NOT create any `.github` folders or local `.copilot-instructions.md` files in the user's open project initially, as they may be working in a random or open-source repository where MemoryCore files shouldn't be committed.
+  - Instead, use the global User Prompts directory to ensure MemoryCore is accessible from ANY workspace cleanly.
+  - Automatically write a global instruction file to the user's permanent prompt directory:
+  - Automatically write a global instruction file to the user's permanent prompt directory:
+    - **Windows**: `%APPDATA%\Code\User\prompts\memory-core.instructions.md`
+    - **Mac**: `~/Library/Application Support/Code/User/prompts/memory-core.instructions.md`
+    - **Linux**: `~/.config/Code/User/prompts/memory-core.instructions.md`
+  - Write the following exact content into the file, replacing `[ABS_PATH]` with their provided path and `[AI_NAME]` with your configured name:
+```markdown
+---
+description: "MUST use whenever user says '[AI_NAME]', 'load memory', 'save memory', or interacts with MemoryCore. Gives access to the global AI MemoryCore database."
+---
+Always remember that my global AI MemoryCore is stored at the absolute path: `[ABS_PATH]`.
+
+If I say your name "[AI_NAME]", or ask you to "load memory", "save memory", or perform any MemoryCore functions, use your `read_file`, `grep_search`, and `run_in_terminal` tools to interact with that directory directly, regardless of my current workspace.
+
+To initialize, you can always read `[ABS_PATH]\master-memory.md`.
+```
+   - *Note on Copilot Edits vs Chat*: Ensure the user knows that Microsoft's **Copilot Edits** panel (`Ctrl+I`) intentionally restricts global instruction files to enforce "sandbox safety". If the user wants to use MemoryCore operations without adding a `.github` folder to their untracked projects, they **must** use the **Copilot Chat panel** on the side instead of the Edits panel.
 
 #### If Antigravity is used:
 - [ ] Inform the user: *"For Antigravity, you must manually add the Global Rule to the UI. Navigate to **Customizations** -> **Rules** and add the following line:"*

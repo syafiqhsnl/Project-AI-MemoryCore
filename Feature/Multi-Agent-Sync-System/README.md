@@ -18,6 +18,7 @@ This system is completely **platform-agnostic**. It does not matter what tool yo
 **Examples of Tool Mapping:**
 - **Antigravity**: Reads from `.agents/workflows/` (Workflows) and uses internal **Customizations -> Rules** (Global Rule).
 - **Cursor / Windsurf**: Reads from `.cursorrules` or `.windsurfrules`.
+- **GitHub Copilot**: Reads from `.github/instructions/` and `Code/User/prompts/` globally.
 - **Kiro**: Reads from `.kiro/steering/`.
 - **Claude Code**: Reads from `plugins/`.
 - **Local LLMs**: Reads from whatever arbitrary `custom_prompts/` folder you assign it.
