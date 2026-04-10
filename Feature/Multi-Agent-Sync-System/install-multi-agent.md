@@ -23,6 +23,10 @@ Executed when "Load multi-agent-sync" command is used — detects the user's pre
   - Cursor → `.cursorrules`
   - Kiro → `.kiro/steering/` and `.kiro/hooks/`
   - Claude Code → `plugins/[name]/skills/`
+- [ ] **Unrecognized/Custom Tools Fallback**:
+  - If the user mentions a tool not listed above, ask: *"Where does [TOOL_NAME] read its custom instructions, system prompts, or workflows from?"*
+  - Identify the absolute or relative path to that configuration folder/file.
+  - Add this custom path to the "Synced Skill Registry".
 
 ### Step 2: Establish Modifiers 
 - [ ] Check if `modify/` directory exists; create it if not.
@@ -53,6 +57,13 @@ Do not ask the user to copy-paste. You must physically write the global tracking
   - **Step B**: Create the per-workspace installer at `~/.kiro/install-memorycore-hook.ps1` (same `~/.kiro/` folder as Step A). Use the template in `kiro-hook-template.md` → File 2. This file must live in `~/.kiro/` so it is accessible from any workspace terminal.
   - **Step C**: Install the hook in the current workspace by creating `.kiro/hooks/memorycore-inject.kiro.hook` (inside the currently open project folder). Use the exact format from `kiro-hook-template.md` → File 3 (must use `.kiro.hook` extension, `"version": "1"`, `"enabled": true`, `"workspaceFolderName"` matching the project folder name).
   - **Step D**: Inform the user: *"For every new Kiro workspace, open a terminal inside that project folder and run: `powershell -ExecutionPolicy Bypass -File "%USERPROFILE%\.kiro\install-memorycore-hook.ps1"` — then reload the Kiro window (`Ctrl+Shift+P` → `Reload Window`)."*
+
+#### If a Custom/Unrecognized Tool is used:
+- [ ] If the tool uses a **Markdown/Text config file** (like `.cursorrules`):
+  - Automatically create/update that file and PREPEND the contents of `modify/global-memory-rule.md`.
+- [ ] If the tool uses a **Workflow/Prompt directory**:
+  - Register that directory in `modify/multi-agent-sync.md`.
+  - The "Massive Synchronization Sweep" (Step 4) will automatically populate it with skills.
 
 ### Step 4: Massive Synchronization Sweep
 - [ ] Locate all previously existing `Feature/` logic or `.md` workflow files in the workspace.

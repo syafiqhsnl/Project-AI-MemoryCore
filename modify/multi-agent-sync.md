@@ -20,6 +20,7 @@ If you are asked to "create a new skill", "modify an automation", or "Forge a na
 - `.agents/workflows/` (For Antigravity/Gemini Workflows)
 - `plugins/[plugin-name]/skills/` (For Claude Code/Kiro Plugin System)
 - `.kiro/steering/` (For Kiro — steering files with `inclusion: always` frontmatter)
+- `.github/instructions/` (For GitHub Copilot)
 *(Note: As new tools are onboarded, append their native paths to this list).*
 
 ## 3. Auto-Registration Onboarding (For New AIs)
