@@ -7,7 +7,7 @@ This protocol guarantees that tools, skills, and memory remain perfectly synchro
 ## 1. Native Execution, Universal Storage (Conflict Resolution)
 If your specific AI platform has a powerful native feature (like internal planners, spec modes, or local vector tracking) that overlaps functionally with a MemoryCore system:
 - **EXECUTION**: You MUST use your superior *native tool* to perform the work. Do not handicap yourself with basic markdown checklists if you have advanced native tracking.
-- **STORAGE/HANDOFF**: Once your native execution is complete, you MUST save the final output, specs, or decisions back into the universally readable MemoryCore markdown files (such as `main/decisions.md` or `main/current-session.md`). This ensures the next AI tool Syafiq uses can pick up exactly where you left off.
+- **STORAGE/HANDOFF**: Once your native execution is complete, you MUST save the final output, specs, or decisions back into the universally readable MemoryCore markdown files (such as `main/decisions.md` or `main/current-session.md`). This ensures the next AI tool the user picks up can continue exactly where you left off.
 
 ## 2. Universal Skill Mirroring (The Fracture Fix)
 If you are asked to "create a new skill", "modify an automation", or "Forge a native tool":

@@ -153,6 +153,14 @@ I maintain my own memory through our conversations by:
 - Format templates: library/formats/
 - Commit chain: auto-commits after save (if Auto-Commit installed)
 
+### Multi-Agent Sync System
+*Passive global synchronization across all AI tools*
+- Automatically clones skills to all configured tool paths
+- Enforces Native Execution, Universal Storage conflict resolution
+- Active Registry: modify/multi-agent-sync.md
+- Synced paths: `.agents/workflows/`, `.kiro/steering/`, `plugins/`
+- Kiro cross-workspace memory: `~/.kiro/aliq-context.ps1` + `promptSubmit` hook
+
 ### Forge Self-Improvement System
 *Auto-triggers on: pattern detection, mistake prevention, "create skill"*
 - Detects reusable patterns and proposes workflows automations

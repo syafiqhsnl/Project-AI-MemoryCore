@@ -16,10 +16,10 @@ We adhere to the **Native Execution, Universal Storage** rule:
 This system is completely **platform-agnostic**. It does not matter what tool you use. All you need to do is map the directory where your specific tool reads its custom instructions into the `Synced Skill Registry` during installation.
 
 **Examples of Tool Mapping:**
-- **Antigravity / Gemini Shell**: Reads from `.agents/workflows/`
-- **Cursor / Windsurf**: Reads from `.cursorrules` or `.windsurfrules`
-- **Kiro**: Reads from `.kiro/steering/`
-- **Claude Code**: Reads from `plugins/`
+- **Antigravity**: Reads from `.agents/workflows/` (Workflows) and uses internal **Customizations -> Rules** (Global Rule).
+- **Cursor / Windsurf**: Reads from `.cursorrules` or `.windsurfrules`.
+- **Kiro**: Reads from `.kiro/steering/`.
+- **Claude Code**: Reads from `plugins/`.
 - **Local LLMs**: Reads from whatever arbitrary `custom_prompts/` folder you assign it.
 
 The installer does the heavy lifting of cloning and updating files across all of these disparate locations.
