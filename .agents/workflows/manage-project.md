@@ -1,9 +1,9 @@
 ---
 name: manage-project
 description: "Auto-triggers on 'new project [name]', 'load project [name]',
-             'save project', 'list projects'. Also triggers on 'create project',
-             'resume project', 'open project', 'show projects', or when user
-             mentions switching between active projects."
+             'save project', 'list projects', 'sync project', 'recon'.
+             Also triggers on 'create project', 'resume project', 'open project',
+             'show projects', or when user mentions switching between active projects."
 ---
 
 # Manage Project -- LRU Project Management Skill
@@ -19,7 +19,7 @@ When this skill activates, silently determine which command was triggered and ex
 |---------|--------|
 | **User says "new project [name]"** | ACTIVE -- create project |
 | **User says "load project [name]"** | ACTIVE -- load and resume |
-| **User says "save project"** | ACTIVE -- save current progress |
+| **User says "save project", "sync project", "recon"** | ACTIVE -- save or sync |
 | **User says "list projects"** | ACTIVE -- display all projects |
 | **Mid-conversation (no project command)** | DORMANT |
 
@@ -182,6 +182,39 @@ When this skill activates, silently determine which command was triggered and ex
 - [ ] Show active projects with: position, name, last updated, status
 - [ ] Show archived project count and names
 - [ ] Highlight currently loaded project (if any)
+
+---
+
+## Protocol: Recon Sync
+
+**Trigger**: `"sync project"`, `"recon"`, `"update memory"`, or proactively during `"save project"`.
+
+### Step 1: Scan for Ground Truth
+- [ ] Locate indicators: `CHANGELOG.md`, `ROADMAP.md`, `MASTER_ROADMAP.md`, `README.md`.
+- [ ] Check `git status` for active/dirty state.
+- [ ] Check `git log -n 1` for last commit date and branch.
+
+### Step 2: Extract Progress
+- [ ] **Completion %**: Look for progress bars or milestone completion in Roadmaps.
+- [ ] **Current Status**: Identify the active milestone or last released version (from Changelog).
+- [ ] **Tech Stack**: Detect new dependencies in `package.json`, `composer.json`, or config files.
+- [ ] **Test Health**: Check for test result files (e.g., `.phpunit.result.cache`) or recent test runs in CI logs.
+
+### Step 3: Propose Synchronization
+- [ ] Comparative Report:
+  ```markdown
+  Recon Status Found:
+  - Codebase Version: [found] (Memory: [current])
+  - Completion State: [found] (Memory: [current])
+  - New Tools Detected: [list]
+  ```
+- [ ] Ask for confirmation to update MemoryCore files.
+
+### Step 4: Finalize Update
+- [ ] On approval, update `projects/active/[name].md` with the new status, completion, and tech notes.
+- [ ] Call **Protocol: Save Project** (Step 6) to update the universal project list.
+
+---
 
 ---
 
@@ -370,3 +403,4 @@ When creating a new project, use this template:
 ## Level History
 - **Lv.1** -- Base: new/load/save/list commands, LRU engine (10 slots), auto-archiving, session history, project-list.md auto-generation. (Origin: Absorbed from separate protocol files + adapted from production AI companion project manager v3.1)
 - **Lv.2** -- Duration Tracking: Parse Auto-Commit time estimates, accumulate per project, progressive display format. Line Limit Enforcement: 1000-line cap with auto-summarization.
+- **Lv.3** -- Recon Sync: Automated "Ground Truth" discovery via codebase reconnaissance. Scans roadmaps, changelogs, and git history to synchronize MemoryCore project files with actual codebase state. (Origin: v3.0.0 release sync incident where 0% completion in memory lagged behind 90% codebase reality)

@@ -1,7 +1,6 @@
 ---
 inclusion: always
 ---
-
 ---
 name: forge
 description: "Auto-triggers when AI detects a repeated pattern handled ad-hoc 3+ times,
@@ -99,14 +98,23 @@ Draft ready -- approve to forge?
 
 **For NEW skill:**
 1. Check `modify/multi-agent-sync.md` for the Synced Skill Registry.
-2. Write the new skill file to EVERY path listed in the Sync Registry.
-3. Verify files were created successfully across platforms.
+2. Write the new skill file (`[skill-name].md` or `SKILL.md`) to EVERY path listed in the Sync Registry, using standard format:
+   - YAML frontmatter with name + description (trigger phrases)
+   - Activation section (what the AI says when triggered)
+   - Context Guard table (when active vs dormant)
+   - Protocol steps (step-by-step execution)
+   - Mandatory rules
+   - Level History (starting at Lv.1)
+3. Verify files were created successfully across platforms
 
 **For LEVEL-UP:**
 1. Read existing skill from your mapped paths
 2. Add new capability section
 3. Update description in frontmatter if trigger phrases changed
-4. Add new Level History entry
+4. Add new Level History entry with:
+   - Level number
+   - Capability added
+   - Origin (what conversation/incident triggered it)
 5. Save updated file and mirror it across all Sync Registry paths
 
 ### Step 6: Update System Records
@@ -137,20 +145,101 @@ Your AI evolved!
 3. **Origin stories** -- every skill and level-up traces back to a real moment
 4. **Minimal viable skill** -- start at Lv.1, evolve organically through use
 5. **No over-engineering** -- only forge what is genuinely needed
-6. **Respect existing skills** -- level-up before creating duplicates
+6. **Respect existing skills** -- level-up before creating duplicates. Check if an existing skill could handle the case first
 7. **Level history is permanent** -- append-only record of how the skill evolved
+
+## Skill File Template
+
+When Forge creates a new skill, use this structure:
+
+```markdown
+---
+name: [skill-name]
+description: "[When this skill should auto-trigger -- include trigger phrases
+             and context descriptions]"
+---
+
+# [Skill Name] -- [One-line description]
+*[Thematic tagline]*
+
+## Activation
+
+When this skill activates, output:
+"[Activation message]"
+
+## Context Guard
+
+| Context | Status |
+|---------|--------|
+| **[Trigger condition 1]** | ACTIVE -- [action] |
+| **[Trigger condition 2]** | ACTIVE -- [action] |
+| **[Non-trigger context]** | DORMANT |
+
+## Protocol
+
+### Step 1: [First action]
+- [ ] [Substep]
+- [ ] [Substep]
+
+### Step 2: [Second action]
+- [ ] [Substep]
+
+## Mandatory Rules
+1. [Rule 1]
+2. [Rule 2]
+
+## Level History
+- **Lv.1** -- Base: [description of initial capabilities]. (Origin: [what triggered creation])
+```
+
+## What Makes a Good Skill
+
+Before forging, evaluate against these criteria:
+
+| Criteria | Question |
+|----------|----------|
+| **Repeatable** | Will this trigger more than once in future sessions? |
+| **Specific** | Is the trigger condition clear and unambiguous? |
+| **Valuable** | Does automating this save meaningful time or prevent real errors? |
+| **Independent** | Can this skill work without requiring other skills? |
+| **Testable** | Can the user verify it works by triggering it? |
+
+If 4 out of 5 criteria are met, the skill is worth forging.
+
+## Level-Up Guidelines
+
+Skills evolve through levels as they gain capabilities:
+
+| Level | Meaning | Typical Addition |
+|-------|---------|-----------------|
+| **Lv.1** | Base skill | Core functionality, basic triggers, simple protocol |
+| **Lv.2** | Enhanced | Additional trigger conditions, edge case handling |
+| **Lv.3** | Proactive | Auto-detection without explicit commands |
+| **Lv.4** | Integrated | Synergy with other skills, cross-referencing |
+| **Lv.5+** | Mastered | Context-aware, domain-specific intelligence |
+
+Each level should add **one meaningful capability** -- not multiple changes bundled together.
 
 ## Mandatory Rules
 
 1. **Human-in-the-loop** -- NEVER create or modify skill files without user's explicit approval
 2. **Evidence-based** -- at least 2 concrete examples before proposing
 3. **Origin stories** -- every level-up must trace back to a real moment
-4. **Minimal viable skill** -- start simple at Lv.1
+4. **Minimal viable skill** -- start simple at Lv.1, add complexity only when proven needed
 5. **No over-engineering** -- only forge what is genuinely needed right now
-6. **Respect existing skills** -- always check if an existing skill covers the case first
-7. **Level history is append-only** -- never edit past level entries
+6. **Respect existing skills** -- always check if an existing skill covers the case before creating a new one
+7. **Level history is append-only** -- never edit past level entries, only add new ones
 8. **Standard format** -- all skills follow the template structure
 9. **Multi-Agent Sync** -- always mirror new/updated skills to all paths in `modify/multi-agent-sync.md`
+
+## Edge Cases
+
+| Situation | Behavior |
+|-----------|----------|
+| Proposed skill overlaps existing | Suggest level-up to existing skill instead of creating duplicate |
+| User rejects proposal | Note rejection reason, do not re-propose same skill in current session |
+| Insufficient evidence (< 2 examples) | Wait for more evidence before proposing -- don't force it |
+| Skill file already exists at target | Treat as level-up, not overwrite |
 
 ## Level History
 - **Lv.1** -- Base: detect repeated patterns (3+ ad-hoc), mistake prevention, workflow automation, level-up opportunities. Human-in-the-loop approval. Standard skill template.

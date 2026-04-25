@@ -1,13 +1,12 @@
 ---
 inclusion: always
 ---
-
 ---
 name: session-briefing
 description: "Fires automatically at the start of every new conversation session, before processing the user's first message at session start. Or when user says 'brief', 'session brief', 'what did we do last time', 'where did we leave off'. Suppress with 'skip brief'."
 ---
 
-# Session Briefing — Skill Plugin
+# 📋 Session Briefing — Skill Plugin
 
 ## Activation Condition
 Fires automatically at the start of every new conversation session, before processing the user's first message.
@@ -15,7 +14,7 @@ Fires automatically at the start of every new conversation session, before proce
 ## Step-by-Step Execution
 
 ### Step 1: Load Context
-Read in parallel:
+Read the following files (in parallel if possible):
 
 | File | Purpose | Required |
 |------|---------|----------|
@@ -33,14 +32,19 @@ Read in parallel:
 | 18:00–21:59 | Evening | Code review, docs, moderate tasks |
 | 22:00–05:59 | Night | Light tasks, planning — suggest wrapping up |
 
-### Step 3: Identify Attention Flags
+*Requires Time-based-Aware-System. If not installed, skip the work suggestion line.*
 
-| Flag | Meaning | Threshold |
-|------|---------|-----------|
+### Step 3: Identify Attention Flags
+Check project list for projects idle beyond their threshold:
+
+| Flag | Meaning | Default Threshold |
+|------|---------|------------------|
 | 🟡 | Idle — approaching warning | 14 days |
 | 🔴 | Stale — past critical threshold | 30 days |
 
-Show max 3 flags, most critical first. Skip if none.
+- Show maximum 3 flags
+- If more exist, show the most critical (most days idle) first
+- Skip this section entirely if no projects are flagged
 
 ### Step 4: Compose Brief
 
@@ -54,7 +58,7 @@ Reminders: [N] open → [first item preview]
 Suggestion: [time-appropriate work type]
 ```
 
-Composition rules:
+**Composition rules:**
 - Total lines: 12 maximum
 - Omit any line/section that has nothing to report
 - "Last session" is the only mandatory line

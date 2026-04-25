@@ -1,7 +1,6 @@
 ---
 inclusion: always
 ---
-
 ---
 name: save-diary
 description: "MUST use when user says 'save diary', 'write diary', 'diary entry',
@@ -29,15 +28,16 @@ When this skill activates, output:
 ## Protocol
 
 ### Step 1: Monthly Archive Check
-- Scan `daily-diary/current/` for files from previous months
-- For each file where month != current month:
+- [ ] Scan `daily-diary/current/` for files from previous months
+- [ ] For each file where month != current month:
   - Create `daily-diary/archived/YYYY-MM/` folder if not exists
-  - Move the file from `current/` to `archived/YYYY-MM/`
+  - Move the file/folder from `current/` to `archived/YYYY-MM/`
+- [ ] Continue with diary write
 
 ### Step 2: Find or Create Today's File
-- Check if `daily-diary/current/YYYY-MM-DD.md` exists
-- If exists: use it (will append new entry)
-- If not: create new file with header:
+- [ ] Check if `daily-diary/current/YYYY-MM-DD.md` exists
+- [ ] If exists: use it (will append new entry)
+- [ ] If not: create new file with header:
   ```markdown
   # Session Diary - [Month Day, Year]
   *Session documentation and development record*
@@ -46,8 +46,9 @@ When this skill activates, output:
   ```
 
 ### Step 3: Compose and Append Diary Entry
-- Get current timestamp via system command
-- Write structured entry:
+- [ ] Get current timestamp via system command
+- [ ] Analyze current session for key content
+- [ ] Write structured entry following format:
   - Session timestamp and theme
   - Main topics discussed
   - Key insights and learning
@@ -55,11 +56,14 @@ When this skill activates, output:
   - Growth and development notes
   - Memorable moments
   - Looking forward (next steps)
-- APPEND entry to today's file (never overwrite)
+- [ ] APPEND entry to today's file (never overwrite existing content)
 
 ### Step 4: Update Session Memory
-- Update `main/current-session.md` with session recap, current state, next steps
-- Confirm diary entry saved with timestamp
+- [ ] Update `main/current-session.md` with:
+  - Session recap and key achievements
+  - Current working state for continuity
+  - Next steps identified
+- [ ] Confirm diary entry saved with timestamp
 
 ## Mandatory Rules
 1. **Always APPEND** — never overwrite existing diary entries

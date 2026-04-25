@@ -7,39 +7,28 @@
 - **Format Reference**: See main/session-format.md for rebuild structure
 
 ## Session RAM Status
-**Current Session**: Active  
-**Last Activity**: 2026-03-02 - Workspace initialization completed  
-**Session Focus**: Setup wizard personalization and memory activation  
-**Context State**: Core identity initialized for Aliq and syafiq
-
-## ⏰ Time-Aware Session Context
-- **Session Start**: 2026-03-03 03:02:53 (Tuesday)
-- **Time Mode**: Night
-- **Energy Level**: 4/10
-- **Behavior Focus**: Gentle support
-
-## 💭 Working Memory (RAM)
-*Temporary storage - cleared when session ends*
-
-### Active Context
-- **Current Topic**: Finalizing the Multi-Agent Sync module for Copilot
-- **Immediate Goals**: Document the Copilot capability registration flow
-- **Recent Progress**: Saved diary documenting Copilot's global instructions and CLI constraints
-- **Next Steps**: Await user instruction for next project
-
-### Session Recap (For AI Restart)
-*Quick summary when AI loads after close/reopen*
-- **Previous Session Summary**: Packaged the Multi-Agent Sync feature for open-source (using `[AI_NAME]` placeholders) and officially registered GitHub Copilot's CLI/VSCode GUI capabilities globally.
-- **Where We Left Off**: Copilot global tracking is active without polluting local project `.github` folders. Next step is returning to typical project executions (`transport-api` or `fyutr-connect`).
+**Current Session**: Active
+**Last Activity**: 2026-04-25 (Saturday)
+**Session Focus**: Infrastructure mapping, project unification, and memory integrity.
+**Context State**: GTFS pipeline stabilized. Project files unified under transport-api.
 
 ## Active Project
-- **Name**: transport-api
-- **Started**: 2026-04-09
-- **Context**: Laravel Transport API project
+- **Name**: transport-api (Public Transport)
+- **Plan File**: [No active plan file]
+- **Project File**: projects/active/transport-api.md
+- **Milestone**: GTFS Pipeline Stable & Infrastructure Mapped
 
 ## Session Recap (For AI Restart)
-- **Previous Session Summary**: Kiro full setup completed. All 10 skills mirrored to `.kiro/steering/`. Cross-workspace memory injection working via `promptSubmit` hook + `~/.kiro/aliq-context.ps1`.
-- **Where We Left Off**: Aliq confirmed working in transport-api with full memory. Next: install hook in fyutr-connect, then begin project execution.
+- **Previous Session Summary**: Massive optimization of GTFS RND workflow. 60min -> 2.5min.
+- **Where We Left Off**: 
+  - Achieved 2m 39s total runtime for 16 providers using Batch Size 15,000 and Loop Concurrency 4.
+  - Solved the "Maximum Call Stack" and "unknown agency_id" bugs using a new "Ultra-Stable Prefix" logic and array-based item returns.
+  - Verified full system integrity with a clean rebuild after TRUNCATE.
+  - Optimized "Sanitize Data" node using "Execute Once" and "Always Output Data" settings.
+- **Key decisions made this session**:
+  - Switched to "Run Once For Each Item" mode for Code nodes to support stable parallelism.
+  - **NEXT SESSION ACTION**: Manually apply the new prefix logic to the remaining 7 Code nodes (Stops, Calendars, Trips, etc.) to ensure 100% data integrity across the whole database.
+
 ## 🔄 Session Lifecycle
 *How this RAM-like memory works*
 
@@ -81,8 +70,8 @@
 
 ---
 
-**Memory Type**: RAM - Temporary Working Memory  
-**Persistence**: Brief recap only, detailed content clears each session  
+**Memory Type**: RAM - Temporary Working Memory
+**Persistence**: Brief recap only, detailed content clears each session
 **Purpose**: Immediate context + restart continuity
 
 *This file acts like computer RAM - active during session, provides restart recap, then clears for next session*
