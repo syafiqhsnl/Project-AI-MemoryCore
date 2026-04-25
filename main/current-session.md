@@ -19,15 +19,17 @@
 - **Milestone**: GTFS Pipeline Stable & Infrastructure Mapped
 
 ## Session Recap (For AI Restart)
-- **Previous Session Summary**: Massive optimization of GTFS RND workflow. 60min -> 2.5min.
+- **Previous Session Summary**: Full MemoryCore architecture audit, Multi-Agent Sync repair, and data integrity fixes.
 - **Where We Left Off**: 
-  - Achieved 2m 39s total runtime for 16 providers using Batch Size 15,000 and Loop Concurrency 4.
-  - Solved the "Maximum Call Stack" and "unknown agency_id" bugs using a new "Ultra-Stable Prefix" logic and array-based item returns.
-  - Verified full system integrity with a clean rebuild after TRUNCATE.
-  - Optimized "Sanitize Data" node using "Execute Once" and "Always Output Data" settings.
+  - Restored `master-memory.md` to the Universal AI Architecture.
+  - Hardcoded exact Digital Infrastructure (DO: 4GB RAM, Sandbox: 2GB RAM) and Workflow Tools into `main-memory.md` to prevent hallucination.
+  - Executed a complete Multi-Agent Sync: cloned all 12 skills from `.agents/workflows` to `.kiro/steering` (with `inclusion: always` YAML) and `.github/instructions` (`.instructions.md`).
+  - Audited `project-list.md` and archived `vps-migration` properly.
+  - Executed the `auto-commit` protocol to permanently save all repairs to Git.
 - **Key decisions made this session**:
-  - Switched to "Run Once For Each Item" mode for Code nodes to support stable parallelism.
-  - **NEXT SESSION ACTION**: Manually apply the new prefix logic to the remaining 7 Code nodes (Stops, Calendars, Trips, etc.) to ensure 100% data integrity across the whole database.
+  - Established `.agents/workflows` as the undeniable master source of truth for all Forge skills.
+  - Hardcoded precise server specs into the core memory so all agents start with accurate data unconditionally.
+  - **NEXT SESSION ACTION**: Rest. The system is fully synchronized and stable.
 
 ## 🔄 Session Lifecycle
 *How this RAM-like memory works*
