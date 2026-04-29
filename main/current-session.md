@@ -7,29 +7,28 @@
 - **Format Reference**: See main/session-format.md for rebuild structure
 
 ## Session RAM Status
-**Current Session**: Active
-**Last Activity**: 2026-04-25 (Saturday)
-**Session Focus**: Infrastructure mapping, project unification, and memory integrity.
-**Context State**: GTFS pipeline stabilized. Project files unified under transport-api.
+**Current Session**: Livewire Assets, Deployment Failure & Git Protocol Hardening
+**Last Activity**: 2026-04-30 (Thursday, Early Morning)
+**Session Focus**: Resolving Livewire 404/419 errors on production and fixing the broken build caused by merge conflict markers.
+**Context State**: Livewire assets are now successfully served by Nginx via `try_files` and `livewire:publish`. However, a premature commit contained conflict markers, breaking the VPS build. The local `main` branch is now 100% clean, but the remote GitHub `main` is protected, requiring a PR to sync.
 
 ## Active Project
 - **Name**: transport-api (Public Transport)
-- **Plan File**: [No active plan file]
+- **Plan File**: deploy.sh
 - **Project File**: projects/active/transport-api.md
-- **Milestone**: GTFS Pipeline Stable & Infrastructure Mapped
+- **Milestone**: Production Login & Dashboard Resolved
 
 ## Session Recap (For AI Restart)
-- **Previous Session Summary**: Full MemoryCore architecture audit, Multi-Agent Sync repair, and data integrity fixes.
-- **Where We Left Off**: 
-  - Restored `master-memory.md` to the Universal AI Architecture.
-  - Hardcoded exact Digital Infrastructure (DO: 4GB RAM, Sandbox: 2GB RAM) and Workflow Tools into `main-memory.md` to prevent hallucination.
-  - Executed a complete Multi-Agent Sync: cloned all 12 skills from `.agents/workflows` to `.kiro/steering` (with `inclusion: always` YAML) and `.github/instructions` (`.instructions.md`).
-  - Audited `project-list.md` and archived `vps-migration` properly.
-  - Executed the `auto-commit` protocol to permanently save all repairs to Git.
+- **Previous Session Summary**: Deployment stabilized, Phase 2 verified, and Project Sync.
+- **Where We Left Off**:
+  - **Stability Victory**: Resolved persistent 419 Page Expired errors by fixing **Cookie Pollution** (Unique session name + domain reset).
+  - **Monitoring Live**: Pulse Dashboard is 100% operational with real-time CPU/Memory/API metrics via a dedicated Docker worker.
+  - **Permissions Automation**: Added `sudo chown` logic to `deploy.sh` to auto-unlock the repository during git fetch (User-preferred manual trigger for now).
 - **Key decisions made this session**:
-  - Established `.agents/workflows` as the undeniable master source of truth for all Forge skills.
-  - Hardcoded precise server specs into the core memory so all agents start with accurate data unconditionally.
-  - **NEXT SESSION ACTION**: Rest. The system is fully synchronized and stable.
+  - Implemented **Unique Session Naming** (`_prod`) to isolate production sessions from local/parent domain cookies.
+  - Added `procps` to Docker image to enable Linux `top` command for CPU monitoring.
+  - Created a dedicated `pulse` service in `docker-compose.yml` for background aggregation.
+- **NEXT SESSION ACTION**: Prepare the k6 load testing environment.
 
 ## 🔄 Session Lifecycle
 *How this RAM-like memory works*
