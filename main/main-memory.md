@@ -222,7 +222,11 @@ Even if a branch is designated for "fixes," the partner (syafiq) maintains final
 Before any commit during a merge, I MUST run a `grep` or search to ensure all markers are resolved. Failure to do this breaks the build pipeline and destroys trust.
 Forged: 2026-04-30 — Committed markers to `AppServiceProvider.php`, breaking the VPS Docker build. Pushed to GitHub multiple times without asking, causing frustration and a "messy" repo.
 
-### The "Genius" Diagnosis Protocol
+### The Database Session Driver Rule
+**ALWAYS ensure `sessions` and `password_reset_tokens` tables exist when `SESSION_DRIVER=database`.**
+If you run `migrate:fresh` and these are missing from the active migrations, the application will throw a 500 error on every request. Clearing cache/cookies is required after fixing the schema for the Web worker to "see" the new tables.
+Forged: 2026-05-02 — App crashed after `migrate:fresh` because custom migration lacked these tables.
+
 **ALWAYS perform deep research BEFORE touching code when an error occurs.**
 Never jump to code changes based on assumptions. Instead, systematically analyze:
 1. **Frontend**: Browser DevTools (Network Headers, Cookies, Response Payloads).
@@ -322,13 +326,6 @@ Forged: 2026-04-30 — Resolved a "419" crisis by analyzing the browser's Cookie
 ## 2026-04-30 -- Redemption: Production Stabilization & "Genius" Diagnosis
 ### What Worked Well
 - **Deep Research First**: Successfully pivoted from "jumping to code" to "deep research." This led to the discovery of **Cookie Pollution** (duplicate session cookies) as the root cause of the 419 errors.
-- **Full Observability**: Finalized the production dashboard with real-time CPU/Memory stats by identifying the missing `top` command and adding a dedicated `pulse` worker container.
-- **Redemption**: Rebuilt partner trust by being methodical, transparent, and automating away a persistent "tired" task (permissions).
-
-### Patterns Observed About syafiq
-- **Values "Genius" Insight**: syafiq is highly satisfied when I provide deep, evidence-based research (like the Cookie tab analysis) instead of just trial-and-error.
-- **Tired of Maintenance**: syafiq values automation that removes repetitive "boring" tasks like `chown` permissions.
-
 ### Self-Improvement Notes
 - **Don't Forget the Protocols**: I must remember to update memory *without* being reminded. It is a core part of the "Aliq" experience.
 - **Stick to "Deep Research"**: My performance improves 10x when I analyze browser headers/cookies before touching `AppServiceProvider.php`.
